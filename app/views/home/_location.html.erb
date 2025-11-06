@@ -1,0 +1,26 @@
+<% case @location[:status] %>
+<% when 200 %>
+    <% current_location = params[:location_id].nil? ? @location[:locations].first : @location[:locations].select{|l| l["id"] == params[:location_id].to_i }.first %>
+    <% if @location[:locations].size > 1 %>
+    <div class="info-text">
+        <%= params[:q] %> Yielded <%= @location[:locations].length %> results <br>
+    </div>
+
+    <div class="link-button-list">
+        <% @location[:locations].each do |location| %>
+        <div class="link-button-element <%="current" if location[:id] == current_location[:id] %>">
+            <%= link_to location[:name], root_path(q: params[:q], location_id: location[:id]), title: location[:display_name] %>
+        </div>
+        <% end %>
+    </div>
+    <% end %> <!-- if size > 1 -->
+    <h1><%= current_location[:name] %></h1>
+<% when 202 %>
+    <div name="page_reloading_div">
+        Loading data for <%= params[:q] %> <span title="Will auto reload in 5s">&#8634; (5s)</span>
+    </div>
+<% when 404 %>
+    <div>
+        No data was found for <%= params[:q] %>
+    </div>
+<% end %>

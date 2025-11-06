@@ -1,0 +1,51 @@
+<div>
+    <% case @forecast[:status] %>
+    <% when 200, 205 %>
+        <% if @forecast[:status] == 205 %>
+            <div name="page_reloading_div" class="info_text">
+                Showing last available data from (<%= @forecast[:forecast].first.first %>) while fetching newest forecast.
+            </div>
+        <% end %>
+
+        <div class="tiles-container">
+            <% day, data = @forecast[:forecast].shift %>
+            <div class="forecast-tile today">
+                <div class="forecast-tile-header">
+                    Today <%=Date.parse(day.to_s).strftime("%b/%d %a") %>
+                </div>
+                <div class="forecast-tile-body current">
+                    Current <%= @forecast.dig(:current, :temperature) %>ºC
+                </div>
+                <div class="forecast-tile-body">
+                    <span class="min-temperature">&#8595; <%= data[:min_temperature] %>ºC</span> <span class="max-temperature"><%= data[:max_temperature] %>ºC &#8593; </span> 
+                </div>
+                 <% if data[:rain_sum] > 0 %>
+                <div class="forecast-tile-body rain" title="rain">
+                    &#x1F327; <%= data[:rain_sum] %> mm
+                </div>
+                <% end %>
+            </div>
+            <% @forecast[:forecast].each do |day, data| %>
+            <div class="forecast-tile">
+                <div class="forecast-tile-header">
+                    <%= Date.parse(day.to_s).strftime("%b/%d %a") %>
+                </div>
+                <div class="forecast-tile-body">
+                    <span class="min-temperature">&#8595; <%= data[:min_temperature] %>ºC</span> <span class="max-temperature"><%= data[:max_temperature] %>ºC &#8593; </span> 
+                </div>
+                <% if data[:rain_sum] > 0 %>
+                <div class="forecast-tile-body rain" title="rain">
+                    &#x1F327; <%= data[:rain_sum] %>mm
+                </div>
+                <% end %>
+            </div>
+            <% end %>
+        </div>
+    <% when 202 %>
+        <div name="page_reloading_div">
+            Fetching newest forecast.
+        </div>
+    <% when 400, 404 %>
+        <h2> Error </h2>
+    <% end %>
+</div>

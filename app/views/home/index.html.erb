@@ -1,0 +1,30 @@
+<div class="container">
+ 
+    <%= render "dev" if Rails.env.development? %>
+
+    <% flash.each do |type, message| %>
+        <div class="info-text <%= type %>">
+            <%= message %>
+        </div>
+    <% end %>
+    <br>
+
+    <%= form_with url: root_path(), method: :get do |form| %>
+        <%= form.label :q, "Search ", class: "search-form label" %>
+        <%= form.search_field :q, value: params[:q], class: "search-form input", title: "Search by name or zipcode" %>
+        <%= form.submit "&#128269;".html_safe, class: "search-form button" %>
+    <% end %>
+
+    <%= render "location" %>
+
+    <%= render "forecast" %>
+
+</div>
+
+<script>
+setInterval(function(){
+    if (document.getElementsByName('page_reloading_div').length > 0) { 
+        window.location.reload();
+    }
+}, 5000);
+</script>

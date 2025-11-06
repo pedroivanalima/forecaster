@@ -1,0 +1,135 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+ body {
+    background-color: #FAFAFA;
+ }
+.container {
+    padding: 30px;
+    padding-bottom: 60px;
+    margin-left: 30px;
+}
+
+.link-button-list {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+}
+
+.link-button-element {
+    margin-right: 10px;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: lightskyblue;
+    opacity: 0.7;
+}
+
+.link-button-element a {
+    text-decoration: none;
+    color: inherit;
+    font-size: large;
+    font-weight: bold;
+}
+
+.link-button-element.current{
+    border: 2px solid darkslateblue;
+    opacity: 1;
+}
+
+.search-form.label {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.search-form.input{
+    border: solid 1px darkslategray;
+    padding: 4px;
+    padding-left: 10px;
+    border-radius: 5px;
+    font-size: large;
+    color: darkslategray;
+}
+
+.search-form.button {
+    border: solid 2px darkslategray;
+    border-radius: 5px 10px;
+    font-size: large;
+}
+
+.info-text {
+    margin-top: 15px;
+    background-color: powderblue;
+    padding: 2px;
+    padding-left: 30px;
+    border: 1px solid cornflowerblue;
+    border-radius: 5px;
+    width: 33%;
+}
+
+.tiles-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    margin-top: 15px;
+}
+
+.forecast-tile {
+    margin-right: 10px;
+    border: solid 2px #111111;
+    border-radius: 5px;
+    height: 50%;
+}
+
+.forecast-tile-header {
+    border-bottom: solid 1px #111111;
+    font-size: x-large;
+    padding: 10px 15px 10px 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.forecast-tile-body {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    font-size: x-large;
+    color: white;
+}
+
+.forecast-tile-body.current {
+    text-align: center;
+    padding: 10px 0px 0px 0px; /* Overwrites forecast-tile padding */
+    display: block;
+}
+
+.forecast-tile-body.rain {
+    text-align: center;
+    padding: 0px 0px 5px 0px;
+    display: block;
+}
+
+.forecast-tile.today {
+    height: 100%;
+}
+
+.min-temperature{
+  padding: 5px;
+  font-weight: bold;
+  color: cornflowerblue;
+}
+
+.max-temperature{
+  padding: 5px;
+  font-weight: bold;
+  color: orangered;
+}
