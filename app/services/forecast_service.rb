@@ -40,7 +40,6 @@ class ForecastService
                 resp = @faraday.get("/v1/forecast", build_params(location))
             rescue => e
                 response_hash[:status] = 400
-                binding.pry
             end
             response_hash[:status] = resp.status
             resp_body = JSON.parse(resp.body)

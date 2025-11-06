@@ -4,7 +4,7 @@
     </h2>
     
     <%= link_to "1 complete", root_path(q: 'Goiânia') %>
-    <%= link_to "2 complete", root_path(q: 'Key123') %>
-    <%= link_to "2 complete other", root_path(q: 'Key123') %>
+    <%= link_to "2 complete", root_path(q: 'Key123', location_id: Location.search_by_text('Key123').first) %>
+    <%= link_to "2 complete other", root_path(q: 'Key123', location_id: Location.search_by_text('Key123').last) %>
     <hr>
 </div>
